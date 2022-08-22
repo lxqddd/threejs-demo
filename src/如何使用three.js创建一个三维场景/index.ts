@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { ShapeGeometry, SphereGeometry } from 'three'
+
 // 创建一个场景
 const scene = new THREE.Scene()
 // 创建一个相机
