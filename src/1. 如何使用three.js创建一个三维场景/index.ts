@@ -12,6 +12,7 @@ const scene = new THREE.Scene()
  * 只有离相机的距离大于near值，小于far值，且在相机的可视角度之内，才能被相机投影到。
  */
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000)
+scene.add(camera)
 // 创建一个渲染器
 const renderer = new THREE.WebGLRenderer()
 
