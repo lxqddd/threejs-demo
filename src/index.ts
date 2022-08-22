@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { GUI } from 'dat.gui'
 // 创建一个场景
 const scene = new THREE.Scene()
 // 创建一个相机
@@ -68,16 +69,31 @@ const container = document.getElementById('app')!
 // 将渲染的内容插入到页面中
 container.appendChild(renderer.domElement)
 
+const controls = {
+  bouncingSpeed: 0.04
+}
+const gui = new GUI()
+gui.add(controls, 'bouncingSpeed', 0, 0.5)
 
 // 让小球跳起来
 const MaxHeight = 10
 let step = 0.08
+let timer: number
 function renderScene() {
-  sphere.position.y += step
-  if (sphere.position.y > MaxHeight || sphere.position.y < 4) {
-    step = -step
+  if (timer) {
+    cancelAnimationFrame(timer)
   }
-  requestAnimationFrame(renderScene)
+  sphere.position.y += controls.bouncingSpeed
+  if (sphere.position.y > MaxHeight) {
+    sphere.position.y = MaxHeight
+    controls.bouncingSpeed = -controls.bouncingSpeed
+  }
+  if (sphere.position.y < 4) {
+    sphere.position.y = 4
+    controls.bouncingSpeed = -controls.bouncingSpeed
+  }
+  timer = requestAnimationFrame(renderScene)
   renderer.render(scene, camera)  
 }
+
 renderScene()
