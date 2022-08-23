@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -10,8 +10,11 @@ module.exports = {
     filename: '[name]-[contenthash:8].bundle.js'
   },
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'public')
+    },
     port: 3000,
-    hot: true,
+    hot: true
   },
   devtool: 'source-map',
   plugins: [
@@ -30,6 +33,10 @@ module.exports = {
             transpileOnly: true
           }
         }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: 'url-loader'
       }
     ]
   },
