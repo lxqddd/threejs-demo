@@ -34,7 +34,6 @@ camera.lookAt(scene.position)
 document.getElementById('app')!.appendChild(renderer.domElement)
 
 // call the render function
-var step = 0
 
 var controls = {
   cameraNear: camera.near,
