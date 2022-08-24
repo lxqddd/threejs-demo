@@ -148,7 +148,7 @@ var flareColor = new THREE.Color(0xffaacc)
 var lensFlare = new Lensflare()
 
 lensFlare.addElement(new LensflareElement(textureFlare0, 512, 0, flareColor))
-// lensFlare.addElement(new LensflareElement(textureFlare3, 512, 0))
+lensFlare.addElement(new LensflareElement(textureFlare3, 512, 0))
 
 lensFlare.position.copy(spotLight.position)
 scene.add(lensFlare)
